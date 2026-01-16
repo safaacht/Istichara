@@ -1,0 +1,15 @@
+{
+    "name": "youcode/istichara",
+    "autoload": {
+        "psr-4": {
+            "Istichara\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "safaacht",
+            "email": "safaachtaoui@gmail.com"
+        }
+    ],
+    "require": {}
+}
