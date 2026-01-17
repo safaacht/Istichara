@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <title>ISTICHARA</title>
+<script src="../views/script.js" defer></script>
 <style>
 :root{
   --blue:#0F2A44;
@@ -151,7 +152,7 @@ nav a{
 
 /* Button */
 .submit-btn{
-    width:50%;
+    width:90%;
     padding:16px;
     background:var(--blue);
     color:white;
@@ -159,7 +160,7 @@ nav a{
     border-radius:8px;
     font-size:16px;
     cursor:pointer;
-    margin-left: 17rem;
+    margin-left: 3rem;
 }
 
 
