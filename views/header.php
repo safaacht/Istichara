@@ -75,92 +75,154 @@ nav a{
   color:#555;
 }
 
-/* FORMS */
+
+/* =======================
+   FORM CONTAINER
+======================= */
 .register-container{
     max-width:1100px;
-    margin:40px auto;
+    margin:60px auto;
     background:#fff;
-    padding:40px;
-    border-radius:12px;
-    box-shadow:0 10px 30px rgba(0,0,0,0.08);
+    padding:45px;
+    border-radius:14px;
+    box-shadow:0 15px 40px rgba(0,0,0,0.08);
 }
 
 .register-container h2{
     text-align:center;
+    font-size:32px;
     color:var(--blue);
-    margin-bottom:30px;
+    margin-bottom:45px;
 }
 
-/* Inputs row */
+/* =======================
+   FORM ROWS
+======================= */
 .form-row{
     display:grid;
     grid-template-columns: repeat(3, 1fr);
-    gap:20px;
-    margin-bottom:25px;
+    gap:25px;
+    margin-bottom:35px;
+}
+
+.form-group{
+    display:flex;
+    flex-direction:column;
 }
 
 .form-group label{
     font-weight:600;
-    margin-bottom:6px;
-    display:block;
+    margin-bottom:8px;
+    color:var(--text);
 }
 
 .form-group input{
-    width:100%;
-    padding:12px;
+    padding:14px;
     border:1px solid var(--gray);
-    border-radius:6px;
+    border-radius:8px;
+    font-size:15px;
+    transition:0.2s;
 }
 
-/* Section label */
+.form-group input:focus{
+    outline:none;
+    border-color:var(--blue);
+}
+
+/* =======================
+   SECTION LABEL
+======================= */
 .section-label{
-    font-weight:600;
-    margin-bottom:15px;
     display:block;
+    font-weight:700;
+    color:var(--text);
+    margin-bottom:15px;
 }
 
-/* Role cards */
+/* =======================
+   ROLE SELECT
+======================= */
 .role-row{
-    display:grid;
-    grid-template-columns: 1fr 1fr;
-    gap:20px;
-    margin-bottom:30px;
+    display:flex;
+    justify-content: space-evenly;
+    gap:70px;
+    margin-bottom:35px;
 }
 
-.role-card{
-    border:2px solid var(--gray);
-    padding:18px;
+.role-row label{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-weight:600;
+    cursor:pointer;
+    color:var(--text);
+}
+
+.role-select input{
+    accent-color: var(--blue);
+    cursor:pointer;
+}
+
+/* =======================
+   EXTRA FIELDS
+======================= */
+#extraFields{
+    padding:25px;
+    background:var(--light);
+    border:1px solid var(--gray);
     border-radius:10px;
-    text-align:center;
+    margin-bottom:40px;
+}
+
+.extra-grid{
+    display:grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap:25px;
+}
+
+.extra-group{
+    display:flex;
+    flex-direction:column;
+}
+
+.extra-group label{
+    font-weight:600;
+    margin-bottom:8px;
+    color:var(--text);
+}
+
+.extra-group input,
+.extra-group select{
+    padding:14px;
+    border:1px solid var(--gray);
+    border-radius:8px;
+    font-size:15px;
+}
+
+.extra-group input:focus,
+.extra-group select:focus{
+    outline:none;
+    border-color:var(--blue);
+}
+
+/* =======================
+   SUBMIT BUTTON
+======================= */
+.submit-btn{
+    width:100%;
+    padding:18px;
+    background:var(--blue);
+    color:white;
+    border:none;
+    border-radius:10px;
+    font-size:17px;
     font-weight:600;
     cursor:pointer;
     transition:0.3s;
 }
 
-.role-card input{
-    display:none;
-}
-
-.role-card:hover{
-    border-color:var(--blue);
-    background:#f2f6fa;
-}
-
-.role-card input:checked + span{
-    font-weight:bold;
-}
-
-/* Button */
-.submit-btn{
-    width:90%;
-    padding:16px;
-    background:var(--blue);
-    color:white;
-    border:none;
-    border-radius:8px;
-    font-size:16px;
-    cursor:pointer;
-    margin-left: 3rem;
+.submit-btn:hover{
+    background:#0b1f33;
 }
 
 
