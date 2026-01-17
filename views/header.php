@@ -11,8 +11,8 @@
 <header>
   <div class="logo">ISTICHARA ⚖️</div>
   <nav>
-    <a onclick="showPage('home')">Accueil</a>
-    <a onclick="showPage('login')">Connexion</a>
+    <a href="./home.php">Accueil</a>
+    <a href="./LoginForm.php">Connexion</a>
   </nav>
 </header>
 
