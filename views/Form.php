@@ -1,4 +1,5 @@
-<?php require_once "./header.php" ?>
+<?php require_once "./header.php";
+?>
 <div class="register-container">
     <h2>Créer un compte</h2>
 
@@ -18,6 +19,16 @@
             <div class="form-group">
                 <label>Téléphone</label>
                 <input type="text" name="phone" placeholder="+212 ..." required>
+            </div>
+        </div>
+        <div class="form-group">
+                <label>Ville</label>
+                <select name="ville" required>
+                    <option value="">-- Choisir --</option>
+                    <?php foreach ($villes as $ville) { ?>
+                    <option value=<?= htmlspecialchars($ville['id'])?>> <?= htmlspecialchars($ville['name'])?></option>
+                    <?php } ?>
+                </select>
             </div>
         </div>
 
