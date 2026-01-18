@@ -20,9 +20,18 @@ switch ($url) {
         $controller = new controllers\PersonneController();
         $controller->createForm();
         break;
+    case 'create':
+        $controller = new controllers\PersonneController();
+        $controller->create();
+        break;
     case 'home':
-        require 'views/home.php';
-        break;    
+        $home = new controllers\HomeController();
+        $home->index();
+        break;  
+        case 'dashboard':
+        $dashboard = new controllers\DashboardController();
+        $dashboard->dashboard();
+        break;   
     default:
         echo "Page non trouvée";
 }
