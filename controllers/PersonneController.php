@@ -4,6 +4,7 @@ namespace controllers;
 use repositories\VilleRepo;
 use repositories\AvocatRepo;
 use repositories\HussierRepo;
+use services\Mailer;
 require_once __DIR__ . '/../helper/Validator.php';
 
 class PersonneController{
@@ -55,8 +56,12 @@ class PersonneController{
                 return;
             }
             
-            // Gestion du résultat
+            
             if ($success) {
+                // envoi de mail automatique
+
+                Mailer::sendWelcomeEmail($email, $name, $role);
+                
                 header('Location: index.php?url=dashboard');
                 exit;
             } else {
