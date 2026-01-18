@@ -12,13 +12,14 @@
   <div class="logo">ISTICHARA ⚖️</div>
   <nav>
     <a href="./home.php">Accueil</a>
+    <a href="./Dashboard.php">Dashboard</a>
     <a href="./LoginForm.php">Connexion</a>
   </nav>
 </header>
 
 
 <!-- CONSULTATION -->
-<div id="consultation" class="page">
+<!-- <div id="consultation" class="page">
   <div class="form-box">
     <h2>Nouvelle demande</h2>
     <select>
@@ -30,5 +31,5 @@
     <textarea rows="5" placeholder="Décrivez votre problème"></textarea>
     <button class="btn" onclick="alert('Demande envoyée !')">Envoyer</button>
   </div>
-</div>
+</div> -->
 
