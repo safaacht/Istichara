@@ -22,8 +22,9 @@ class AvocatRepo extends BaseRepo{
     
     // Top 3 par années d'expérience
     public function getTopByExperience($limit = 3) {
-        $stmt = $this->conn->prepare("SELECT name, years_of_experiences FROM lawyer ORDER BY years_of_experiences DESC LIMIT ?");
-        $stmt->execute([$limit]);
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $stmt = $this->conn->prepare("SELECT name, years_of_experiences FROM lawyer ORDER BY years_of_experiences DESC LIMIT :limit");
+        $stmt->bindValue(':limit', $limit, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetchAll();
     }
 }
