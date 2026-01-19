@@ -32,6 +32,10 @@ switch ($url) {
         $dashboard = new controllers\DashboardController();
         $dashboard->dashboard();
         break;   
+    case 'search':
+        $search = new controllers\SearchController();
+        $search->index();
+        break;
     default:
         echo "Page non trouvée";
 }
