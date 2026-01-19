@@ -25,6 +25,23 @@ class AvocatRepo extends BaseRepo{
         $stmt = $this->conn->prepare("SELECT name, years_of_experiences FROM lawyer ORDER BY years_of_experiences DESC LIMIT :limit");
         $stmt->bindValue(':limit', $limit, PDO::PARAM_INT);
         $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function search($keyword, $cityId) {
+        $sql = "SELECT lawyer.*, city.name as city_name 
+                FROM lawyer 
+                LEFT JOIN city ON lawyer.city_id = city.id 
+                WHERE lawyer.name LIKE :keyword";
+        $params = [':keyword' => "%$keyword%"];
+
+        if (!empty($cityId)) {
+            $sql .= " AND lawyer.city_id = :cityId";
+            $params[':cityId'] = $cityId;
+        }
+
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute($params);
         return $stmt->fetchAll();
     }
 }

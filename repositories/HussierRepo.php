@@ -20,4 +20,21 @@ class HussierRepo extends BaseRepo{
         $stmt = $this->conn->query("SELECT city_id, COUNT(*) as count FROM hussier GROUP BY city_id");
         return $stmt->fetchAll();
     }
+
+    public function search($keyword, $cityId) {
+        $sql = "SELECT hussier.*, city.name as city_name 
+                FROM hussier 
+                LEFT JOIN city ON hussier.city_id = city.id 
+                WHERE hussier.name LIKE :keyword";
+        $params = [':keyword' => "%$keyword%"];
+
+        if (!empty($cityId)) {
+            $sql .= " AND hussier.city_id = :cityId";
+            $params[':cityId'] = $cityId;
+        }
+
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute($params);
+        return $stmt->fetchAll();
+    }
 }
