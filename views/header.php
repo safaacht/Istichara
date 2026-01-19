@@ -14,6 +14,7 @@
     <a href="./home.php">Accueil</a>
     <a href="./Dashboard.php">Dashboard</a>
     <a href="./LoginForm.php">Connexion</a>
+    <a href="index.php?url=search" class="search-icon" title="Rechercher">🔍</a>
   </nav>
 </header>
 
