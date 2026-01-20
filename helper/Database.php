@@ -8,7 +8,7 @@ class Database implements DatabaseInterface{
     private static string $db_name="istichara";
     private static string $user="root";
     private static string $mdp="";
-    private static int $port=3307;
+    private static int $port=3306;
 
     private static  $conn=null;
 
