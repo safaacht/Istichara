@@ -13,6 +13,7 @@
   <nav>
     <a href="index.php?controller=home&action=home">Accueil</a>
     <a href="index.php?controller=dashboard&action=dashboard">Dashboard</a>
+    <a href="index.php?controller=personne&action=createForm">Sign up</a>
     <a href="./LoginForm.php">Connexion</a>
     <a href="index.php?controller=search&action=index" class="search-icon" title="Rechercher">🔍</a>
   </nav>
