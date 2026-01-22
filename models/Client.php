@@ -4,6 +4,7 @@ use models\Personne;
 
 class Client extends Personne{
     private int $city_id;
+    // user id to be modified
     private int $user_id;
     public function __construct(int $user_id, string $name, string $phone, int $city_id, ?int $id = null)
     {

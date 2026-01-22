@@ -13,8 +13,10 @@
   <nav>
     <a href="index.php?controller=home&action=home">Accueil</a>
     <a href="index.php?controller=dashboard&action=dashboard">Dashboard</a>
+    <a href="index.php?controller=appointment&action=clientAppointments">Mes RDV</a>
+    <a href="index.php?controller=appointment&action=manage" style="color: #60A5FA;">Espace Pro</a>
     <a href="index.php?controller=register&action=createClientForm">Sign up as client</a>
-    <a href="index.php?controller=personne&action=RegisterProForm">Sign up as Professional</a>
+    <a href="index.php?controller=demande&action=createProForm">Sign up as Professional</a>
     <a href="./LoginForm.php">Connexion</a>
     <a href="index.php?controller=search&action=index" class="search-icon" title="Rechercher">🔍</a>
   </nav>
