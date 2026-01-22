@@ -13,7 +13,7 @@ class UserRepo{
         $this->conn = Database::getConnection();
     }
     public function create(User $user){
-        $sql = "INSERT INTO user(email, password, role)
+        $sql = "INSERT INTO \"user\"(email, password, role)
             VALUES(:email, :password, :role)";
         $stmt = $this->conn->prepare($sql);
         $result = $stmt->execute([

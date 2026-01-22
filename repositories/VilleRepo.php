@@ -30,4 +30,18 @@ class VilleRepo extends BaseRepo
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    public function affichage(): array {
+        $cacheKey = 'cities_list';
+        $cached = \helper\RedisHelper::get($cacheKey);
+
+        if ($cached) {
+            return $cached;
+        }
+
+        $data = parent::affichage();
+        \helper\RedisHelper::set($cacheKey, $data, 3600); // Cache for 1 hour
+
+        return $data;
+    }
 }
