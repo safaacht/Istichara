@@ -26,6 +26,12 @@ class UserRepo{
         return $user_id;
 
     }
+
+    public function findByEmail($email) {
+        $stmt = $this->conn->prepare("SELECT * FROM user WHERE email = :email");
+        $stmt->execute(['email' => $email]);
+        return $stmt->fetch();
+    }
 }
 
 
