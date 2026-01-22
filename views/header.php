@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <title>ISTICHARA</title>
-<link rel="stylesheet" href="./public/style.css">
-<script src="../public/script.js" defer></script>
+<link rel="stylesheet" href="<?= BASE_URL ?>/public/style.css">
+<script src="<?= BASE_URL ?>/public/script.js" defer></script>
 </head>
 <body>
 
