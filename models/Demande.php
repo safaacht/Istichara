@@ -6,18 +6,19 @@ class Demande extends Profetionnel{
     private ?string $specialization = null;
     private ?bool $consultationOnline = null;
     private ?string $type = null;
+    private string $email;
     private int $user_id;
     private int $city_id;
     private string $status;
-    public function __construct(string $name, string $phone, float $hourlyRate, int $expYears, string $document,string $status, int $city_id, int $user_id,?string $specialization = null, ?bool $consultationOnline = null, ?string $type = null,  ?int $id = null)
+    public function __construct(string $name, string  $email,string $phone, float $hourlyRate, int $expYears, string $document,string $status, int $city_id,?string $specialization = null, ?bool $consultationOnline = null, ?string $type = null,  ?int $id = null)
     {
         parent::__construct($name, $phone, $hourlyRate, $expYears, $document, $id);
         $this->specialization = $specialization;
         $this->consultationOnline = $consultationOnline;
         $this->type = $type;
+        $this->email = $email;
         $this->status = $status;
         $this->city_id = $city_id;
-        $this->user_id = $user_id;
     }
     public function getCityId(){
         return $this->city_id;
@@ -44,7 +45,7 @@ class Demande extends Profetionnel{
         return $this->specialization;
     }
 
-    public function isConsultationOnline(): bool {
+    public function isConsultationOnline(){
         return $this->consultationOnline;
     }
 
@@ -61,6 +62,15 @@ class Demande extends Profetionnel{
     public function setStatus($status)
     {
         $this->status = $status;
+    }
+
+    public function getEmail(){
+        return $this->email;
+    }
+
+    public function setEmail($email)
+    {
+        $this->email = $email;
     }
 }
 

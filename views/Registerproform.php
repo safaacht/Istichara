@@ -461,7 +461,7 @@ $villes = $villeRepo->getVilleNames();
         </div>
 
         <!-- Form -->
-        <form action="index.php?controller=register&action=Registerpro" method="POST" enctype="multipart/form-data" id="multiStepForm">
+        <form action="index.php?controller=demande&action=Registerpro" method="POST" enctype="multipart/form-data" id="multiStepForm">
             
             <!-- STEP 1: Informations Personnelles -->
             <div class="form-step active" data-step="1">
@@ -482,22 +482,22 @@ $villes = $villeRepo->getVilleNames();
 
                 <div class="form-group">
                     <label for="name">Nom complet <span class="required">*</span></label>
-                    <input type="text" id="name" name="name" required>
+                    <input type="text" id="name" name="name" >
                 </div>
 
                 <div class="form-group">
                     <label for="email">Email <span class="required">*</span></label>
-                    <input type="email" id="email" name="email" required>
+                    <input type="email" id="email" name="email" >
                 </div>
 
                 <div class="form-group">
                     <label for="phone">Téléphone <span class="required">*</span></label>
-                    <input type="tel" id="phone" name="phone" required>
+                    <input type="tel" id="phone" name="phone" >
                 </div>
 
                 <div class="form-group">
                     <label for="city">Ville <span class="required">*</span></label>
-                    <select id="city" name="ville" required>
+                    <select id="city" name="ville" >
                         <option value="">Sélectionnez une ville</option>
                         <?php foreach($villes as $id => $name): ?>
                             <option value="<?= $id ?>"><?= htmlspecialchars($name) ?></option>
@@ -507,12 +507,12 @@ $villes = $villeRepo->getVilleNames();
 
                 <div class="form-group">
                     <label for="experience">Années d'expérience <span class="required">*</span></label>
-                    <input type="number" id="experience" name="experience" min="0" required>
+                    <input type="number" id="experience" name="experience" min="0" >
                 </div>
 
                 <div class="form-group">
                     <label for="tarif">Tarif horaire (MAD) <span class="required">*</span></label>
-                    <input type="number" id="tarif" name="tarif" min="0" step="50" required>
+                    <input type="number" id="tarif" name="tarif" min="0" step="50" >
                 </div>
 
                 <div id="avocatFields" style="display: none;">
@@ -556,7 +556,7 @@ $villes = $villeRepo->getVilleNames();
 
                 <div class="form-group">
                     <label for="password">Mot de passe <span class="required">*</span></label>
-                    <input type="password" id="password" name="password" required minlength="6">
+                    <input type="password" id="password" name="password" minlength="6">
                 </div>
 
                 <!-- <div class="form-group">
@@ -580,7 +580,7 @@ $villes = $villeRepo->getVilleNames();
                             <div>Cliquez pour uploader vos documents</div>
                             <small style="color: #999;">PDF, JPG, PNG (Max 5MB chacun)</small>
                         </div>
-                        <input type="file" id="diplomes" name="diplomes" accept=".pdf,.jpg,.jpeg,.png" multiple required>
+                        <input type="file" id="diplomes" name="diplomes" accept=".pdf,.jpg,.jpeg,.png" multiple>
                         <div class="file-name" id="diplomes_name"></div>
                     </div>
                 </div>

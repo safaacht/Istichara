@@ -21,6 +21,7 @@ class DemandeController{
     }
 
     public function Registerpro(){
+        var_dump($_FILES["diplomes"]);
         if(isset($_POST['submit'])){
             $type = $_POST['type'];
 
@@ -34,17 +35,19 @@ class DemandeController{
                 $specialization = $_POST['specialization'];
                 $consultation_online = $_POST['consultation_online'];
                 $password = $_POST['password'];
-                $diplomes = $_POST['diplomes'];
+                $diplomes = $_FILES["diplomes"];
 
-                $user = new User($email, $password, 'Avocat');
-                $userRepo = new UserRepo();
-                $user_id = $userRepo->createAvocat($user);
-                // echo $user_id;
-                if (!$user_id) {
-                        throw new \Exception("erreur lors de la creation du compte");
-                }
+                // save file
 
-                
+                $url = "";
+
+                $client = new Demande($name, $email, $phone, $tarif, $experience, $url, 'pending', $city, $specialization, $consultation_online);
+                $clientRepo = new DemandeRepo();
+                $clientcreated = $clientRepo->createAvocat($client);
+                header("location: /../views/home.php");
+                exit;
+
+
             }elseif(strtolower($type) === 'huissier'){
                 $name = $_POST['name'];
                 $email = $_POST['email'];
@@ -54,7 +57,17 @@ class DemandeController{
                 $tarif = $_POST['tarif'];
                 $type_actes = $_POST['type_actes'];
                 $password = $_POST['password'];
-                $diplomes = $_POST['diplomes'];
+                $diplomes = $_FILES['diplomes'];
+
+                // save file
+
+                $url = "";
+
+                $client = new Demande($name, $email, $phone, $tarif, $experience, $url, 'pending', $city, $type_actes);
+                $clientRepo = new DemandeRepo();
+                $clientcreated = $clientRepo->createHuissier($client);
+                header("location: /../views/home.php");
+                exit;
             }
         }
     }
