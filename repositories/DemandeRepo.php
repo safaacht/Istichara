@@ -1,13 +1,11 @@
 <?php
 namespace repositories;
-use models\Avocat;
 use models\Demande;
-use models\Hussier;
 use helper\Database;
 use PDO;
 
-class DemandeRepo{
-    private PDO $conn;
+class DemandeRepo  {
+    private $conn;
 
     public function __construct() {
         $this->conn = Database::getConnection();
@@ -27,7 +25,7 @@ class DemandeRepo{
             ':consultation_online' => $avocat->isConsultationOnline(),
             ':city_id' => $avocat->getCityId(),
             ':document' => $avocat->getDocument(),
-            ':status' => $avocat->getStatus(),
+            ':status' => 'pending', 
         ]);
         return $result;
     }
@@ -45,18 +43,10 @@ class DemandeRepo{
             ':type' => $huissier->getType(),
             ':city_id' => $huissier->getCityId(),
             ':document' => $huissier->getDocument(),
-            ':status' => $huissier->getStatus(),
+            ':status' => 'pending',
         ]);
         return $result;
     }
-}
-
-?>
-use repositories\BaseRepo;
-use PDO;
-
-class DemandeRepo extends BaseRepo {
-    protected string $table = "demande";
 
     public function getPending() {
         $stmt = $this->conn->prepare("SELECT * FROM demande WHERE status = 'pending'");

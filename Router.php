@@ -21,10 +21,9 @@ class Router{
         "home"=> HomeController::class,
         "search" => SearchController::class,
         "register" => RegisterController::class,
-        "demande" => DemandeController::class
+        "demande" => DemandeController::class,
         "admin" => AdminController::class,
-        "home" =>HomeController::class,
-    ];
+     ];
 
     public static function dispatch(){
         $controllerKey=$_GET["controller"] ?? 'home'; 
