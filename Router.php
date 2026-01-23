@@ -21,7 +21,7 @@ class Router{
         "search" => SearchController::class,
         "register" => RegisterController::class,
         "admin" => AdminController::class,
-        "" =>HomeController::class,
+        "home" =>HomeController::class,
     ];
 
     public static function dispatch(){
