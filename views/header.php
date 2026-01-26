@@ -21,24 +21,33 @@ if (session_status() === PHP_SESSION_NONE) {
   </div>
   
   <nav>
-    <a href="index.php?controller=home&action=home">Accueil</a>
-    <a href="index.php?controller=dashboard&action=dashboard">Dashboard</a>
-    <a href="index.php?controller=appointment&action=clientAppointments">Mes RDV</a>
-    <a href="index.php?controller=appointment&action=manage" style="color: #60A5FA;">Espace Pro</a>
-    <a href="index.php?controller=register&action=createClientForm">Sign up as client</a>
-    <a href="index.php?controller=demande&action=createProForm">Sign up as Professional</a>
-    <a href="index.php?controller=search&action=index" class="search-icon" title="Rechercher">🔍</a>
-  </nav>
+    <a href="<?= BASE_URL ?>/index.php?controller=home&action=home">Accueil</a>
+    
+    <?php if (isset($_SESSION['user_id'])): ?>
+        <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin'): ?>
+            <a href="<?= BASE_URL ?>/index.php?controller=admin&action=validationCompte">Validation Comptes</a>
+            <a href="<?= BASE_URL ?>/index.php?controller=dashboard&action=dashboard">Dashboard</a>
+        <?php elseif (isset($_SESSION['role']) && ($_SESSION['role'] === 'avocat' || $_SESSION['role'] === 'hussier')): ?>
+             <a href="<?= BASE_URL ?>/index.php?controller=appointment&action=manage">Mon Espace Pro</a>
+             <a href="<?= BASE_URL ?>/index.php?controller=appointment&action=clientAppointments">Mes RDV</a>
+        <?php elseif (isset($_SESSION['role']) && $_SESSION['role'] === 'client'): ?>
+             <a href="<?= BASE_URL ?>/index.php?controller=search&action=index">Trouver un expert</a>
+             <a href="<?= BASE_URL ?>/index.php?controller=appointment&action=clientAppointments">Mes RDV</a>
+        <?php endif; ?>
+    <?php else: ?>
+        <a href="<?= BASE_URL ?>/index.php?controller=search&action=index">Trouver un expert</a>
+        <a href="<?= BASE_URL ?>/index.php?controller=register&action=Registerproform">Rejoindre en tant que Pro</a>
+    <?php endif; ?>
   </nav>
 
   <div class="nav-actions">
     
 
     <?php if (isset($_SESSION['user_id'])): ?>
-        <a href="logout.php" class="btn-nav ghost">Déconnexion</a>
+        <a href="<?= BASE_URL ?>/index.php?controller=login&action=logout" class="btn-nav ghost">Déconnexion</a>
     <?php else: ?>
-        <a href="index.php?controller=login&action=loginForm" class="btn-nav ghost">Connexion</a>
-        <a href="index.php?controller=personne&action=createForm" class="btn-nav primary">S'inscrire</a>
+        <a href="<?= BASE_URL ?>/index.php?controller=login&action=loginForm" class="btn-nav ghost">Connexion</a>
+        <a href="<?= BASE_URL ?>/index.php?controller=register&action=Registerclient" class="btn-nav primary">S'inscrire</a>
     <?php endif; ?>
   </div>
 </header>
@@ -58,4 +67,3 @@ if (session_status() === PHP_SESSION_NONE) {
     <button class="btn" onclick="alert('Demande envoyée !')">Envoyer</button>
   </div>
 </div> -->
-
