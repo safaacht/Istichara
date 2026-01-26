@@ -35,7 +35,7 @@
                         </td>
                         <td>
                             <?php if(!empty($pro['document'])): ?>
-                                <a href="<?= htmlspecialchars($pro['document']) ?>" target="_blank" class="btn-doc">Voir Document</a>
+                                <a href="<?= BASE_URL ?>/public/documents/<?= htmlspecialchars($pro['document']) ?>" target="_blank" class="btn-doc">Voir Document</a>
                             <?php else: ?>
                                 <span class="text-muted">Non fourni</span>
                             <?php endif; ?>
@@ -43,11 +43,11 @@
                         <td><?= date('d/m/Y', strtotime($pro['created_at'])) ?></td>
                         <td>
                             <div class="actions">
-                                <form action="index.php?controller=admin&action=accept" method="POST" style="display:inline;">
+                                <form action="<?= BASE_URL ?>/index.php?controller=admin&action=accept" method="POST" style="display:inline;">
                                     <input type="hidden" name="id" value="<?= $pro['id'] ?>">
                                     <button type="submit" class="btn-approve">Approuver</button>
                                 </form>
-                                <form action="index.php?controller=admin&action=reject" method="POST" style="display:inline;">
+                                <form action="<?= BASE_URL ?>/index.php?controller=admin&action=reject" method="POST" style="display:inline;">
                                     <input type="hidden" name="id" value="<?= $pro['id'] ?>">
                                     <button type="submit" class="btn-reject">Rejeter</button>
                                 </form>

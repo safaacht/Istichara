@@ -453,7 +453,7 @@ $villes = $villeRepo->getVilleNames();
         </div>
 
         <!-- Form -->
-        <form action="index.php?controller=demande&action=Registerpro" method="POST" enctype="multipart/form-data" id="multiStepForm">
+        <form action="<?= BASE_URL ?>/index.php?controller=demande&action=Registerpro" method="POST" enctype="multipart/form-data" id="multiStepForm">
             
             <!-- STEP 1: Informations Personnelles -->
             <div class="form-step active" data-step="1">
