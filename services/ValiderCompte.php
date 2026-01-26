@@ -26,7 +26,7 @@ class ValiderCompte{
                 throw new \Exception("Demande not found");
             }
 
-            $this->demandeRepo->updateStatus($id, 'accepted');
+            $this->demandeRepo->updateStatus($id, 'approved');
 
             // if accepted insert data in lawyer or hussier table
             $data = [
