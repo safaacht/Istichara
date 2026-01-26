@@ -1,11 +1,56 @@
 <?php
 namespace repositories;
-use repositories\BaseRepo;
+
+use models\Avocat;
+use models\Demande;
+use helper\Database;
 use PDO;
 
-class DemandeRepo extends BaseRepo {
-    protected string $table = "demande";
+class DemandeRepo  {
+    private PDO $conn;
 
+    public function __construct() {
+        $this->conn = Database::getConnection();
+    }
+
+    public function createAvocat(Demande $avocat){
+        $sql = 'INSERT INTO "demande" (name, email, phone, years_of_experiences, hourly_rate, specialization, consultation_online, city_id, document, status, password)
+            VALUES(:name, :email, :phone, :years_of_experiences, :hourly_rate, :specialization, :consultation_online, :city_id, :document, :status, :password) RETURNING id';
+        $stmt = $this->conn->prepare($sql);
+        $result = $stmt->execute([
+            ':name' => $avocat->getName(),
+            ':email' => $avocat->getEmail(),
+            ':phone' => $avocat->getPhone(),
+            ':years_of_experiences' => $avocat->getExpYears(),
+            ':hourly_rate' => $avocat->getHourlyRate(),
+            ':specialization' => $avocat->getspecialization(),
+            ':consultation_online' => $avocat->isConsultationOnline(),
+            ':city_id' => $avocat->getCityId(),
+            ':document' => $avocat->getDocument(),
+            ':status' => $avocat->getStatus(),
+            ':password' => $avocat->getPassword(),
+        ]);
+        return $result;
+    }
+
+    public function createHuissier(Demande $huissier){
+        $sql = 'INSERT INTO "demande" (name, email, phone, years_of_experiences, hourly_rate, type, city_id, document, status, password)
+            VALUES(:name, :email, :phone, :years_of_experiences, :hourly_rate, :type, :city_id, :document, :status, :password) RETURNING id';
+        $stmt = $this->conn->prepare($sql);
+        $result = $stmt->execute([
+            ':name' => $huissier->getName(),
+            ':email' => $huissier->getEmail(),
+            ':phone' => $huissier->getPhone(),
+            ':years_of_experiences' => $huissier->getExpYears(),
+            ':hourly_rate' => $huissier->getHourlyRate(),
+            ':type' => $huissier->getType(),
+            ':city_id' => $huissier->getCityId(),
+            ':document' => $huissier->getDocument(),
+            ':status' => $huissier->getStatus(),
+            ':password' => $huissier->getPassword(),
+        ]);
+        return $result;
+    }
     public function getPending() {
         $stmt = $this->conn->prepare("SELECT * FROM demande WHERE status = 'pending'");
         $stmt->execute();
@@ -18,10 +63,14 @@ class DemandeRepo extends BaseRepo {
                                'id' => $id
                               ]);
     }
-
+    
     public function findById($id) {
         $stmt = $this->conn->prepare("SELECT * FROM demande WHERE id = :id");
         $stmt->execute(['id' => $id]);
         return $stmt->fetch();
     }
 }
+
+
+
+?>
