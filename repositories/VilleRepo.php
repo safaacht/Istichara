@@ -11,17 +11,8 @@ class VilleRepo extends BaseRepo
 
     public function getVilleNames()
     {
-        $cacheKey = 'cities_names_list';
-        $cached = \helper\RedisHelper::get($cacheKey);
-
-        if ($cached) {
-            return $cached;
-        }
-
         $stmt = $this->conn->query("SELECT id, name FROM city");
-        $data = $stmt->fetchAll(PDO::FETCH_KEY_PAIR);
-        \helper\RedisHelper::set($cacheKey, $data, 3600);
-        return $data;
+        return $stmt->fetchAll(PDO::FETCH_KEY_PAIR);
     }
 
     public function countVilles()
@@ -40,17 +31,4 @@ class VilleRepo extends BaseRepo
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function affichage(): array {
-        $cacheKey = 'cities_list';
-        $cached = \helper\RedisHelper::get($cacheKey);
-
-        if ($cached) {
-            return $cached;
-        }
-
-        $data = parent::affichage();
-        \helper\RedisHelper::set($cacheKey, $data, 3600); // Cache for 1 hour
-
-        return $data;
-    }
 }
