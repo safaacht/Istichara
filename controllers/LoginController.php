@@ -10,7 +10,7 @@ use Validator as GlobalValidator;
 require_once __DIR__ . '/../helper/Validator.php';
 
 class LoginController{
-    public function loginForm() {
+    public function index() {
         
         require_once __DIR__ . '/../views/LoginForm.php';
     }
@@ -22,7 +22,7 @@ class LoginController{
             if(empty($email) || empty($password)){
                 $emailerror = Validator::email($email);
                 echo "<script>alert('Veuillez remplir tous les champs')</script>";
-                header("Location: index.php?controller=login&action=loginForm");
+                header("Location: index.php?controller=login&action=index");
                 exit;
             }
             $userRepo = new UserRepo();
@@ -34,7 +34,7 @@ class LoginController{
             }
             if($password !== $user['password']){
                 echo "Email ou mot de passe incorrect";
-                header("Location: index.php?controller=login&action=loginForm");
+                header("Location: index.php?controller=login&action=index");
                 exit;
             }
             $_SESSION['id'] = $user['id'];
@@ -42,14 +42,14 @@ class LoginController{
             $_SESSION['role'] = $user['role'];
             $_SESSION['success'] = 'connexion reussie';
 
-            header("location: index.php?controller=home&action=home");
+            header("location: index.php?controller=home&action=index");
         }
     }
     public function logout(){
         session_start();
         session_unset();
         session_destroy();
-        header("Location: index.php?controller=login&action=loginForm");
+        header("Location: index.php?controller=login&action=index");
         exit;
     }
 }

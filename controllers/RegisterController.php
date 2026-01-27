@@ -12,7 +12,7 @@ use helper\Database;
 require_once __DIR__ . '/../helper/Validator.php';
 
 class RegisterController{
-    public function createClientForm() {
+    public function index() {
         // recuperation des villes via  repo
         $villeRepo = new VilleRepo();
         $villes = $villeRepo->affichage();
@@ -55,7 +55,7 @@ class RegisterController{
             $clientRepo = new ClientRepo();
             $clientcreated = $clientRepo->create($client);
 
-            header("location: index.php?controller=home&action=home");
+            header("location: index.php?controller=home&action=index");
     }
 
     

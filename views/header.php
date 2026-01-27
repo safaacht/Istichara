@@ -8,11 +8,6 @@
 </head>
 <body>
 
-<?php
-if (session_status() === PHP_SESSION_NONE) {
-    session_start();
-}
-?>
 
 <header>
   <div class="logo">
@@ -21,12 +16,12 @@ if (session_status() === PHP_SESSION_NONE) {
   </div>
   
   <nav>
-    <a href="index.php?controller=home&action=home">Accueil</a>
-    <a href="index.php?controller=dashboard&action=dashboard">Dashboard</a>
+    <a href="index.php?controller=home&action=index">Accueil</a>
+    <a href="index.php?controller=dashboard&action=index">Dashboard</a>
     <a href="index.php?controller=appointment&action=clientAppointments">Mes RDV</a>
     <a href="index.php?controller=appointment&action=manage" style="color: #60A5FA;">Espace Pro</a>
-    <a href="index.php?controller=register&action=createClientForm">Sign up as client</a>
-    <a href="index.php?controller=demande&action=createProForm">Sign up as Professional</a>
+    <a href="index.php?controller=register&action=index">Sign up as client</a>
+    <a href="index.php?controller=demande&action=index">Sign up as Professional</a>
     <a href="index.php?controller=search&action=index" class="search-icon" title="Rechercher">🔍</a>
   </nav>
   </nav>
@@ -37,7 +32,7 @@ if (session_status() === PHP_SESSION_NONE) {
     <?php if (isset($_SESSION['user_id'])): ?>
         <a href="logout.php" class="btn-nav ghost">Déconnexion</a>
     <?php else: ?>
-        <a href="index.php?controller=login&action=loginForm" class="btn-nav ghost">Connexion</a>
+        <a href="index.php?controller=login&action=index" class="btn-nav ghost">Connexion</a>
         <a href="index.php?controller=personne&action=createForm" class="btn-nav primary">S'inscrire</a>
     <?php endif; ?>
   </div>
