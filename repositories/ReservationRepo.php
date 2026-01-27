@@ -1,56 +1,64 @@
 <?php
-
 namespace repositories;
 
-use PDO;
 use models\Reservation;
+use helper\Database;
+use PDO;
 
 class ReservationRepo extends BaseRepo {
-    protected string $table = "reservation";
+    public string $table = "reservation";
 
-    public function findByProfessional(int $id, string $type) {
-        $column = ($type === 'lawyer') ? 'lawyer_id' : 'hussier_id';
-        $sql = "SELECT r.*, c.name as client_name 
-                FROM {$this->table} r
-                JOIN client c ON r.client_id = c.id
-                WHERE r.{$column} = :id
-                ORDER BY r.day DESC, r.horaire ASC";
 
+    public function createReservation(Reservation $reservation) {
+        $sql = "INSERT INTO reservation (lawyer_id, hussier_id, client_id, day, horaire, is_online, status) 
+                VALUES (:lawyer_id, :hussier_id, :client_id, :day, :horaire, :is_online, :status)";
+        
         $stmt = $this->conn->prepare($sql);
-        $stmt->execute([':id' => $id]);
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        
+        return $stmt->execute([
+            ':lawyer_id' => $reservation->getLawyerId(),
+            ':hussier_id' => $reservation->getHussierId(),
+            ':client_id' => $reservation->getClientId(),
+            ':day' => $reservation->getDay(),
+            ':horaire' => $reservation->getHoraire(),
+            ':is_online' => $reservation->isOnline() ? 1 : 0,
+            ':status' => $reservation->getStatus()
+        ]);
     }
 
-    public function findByClient(int $clientId) {
+    public function findByClient($clientId) {
+
         $sql = "SELECT r.*, 
-                COALESCE(l.name, h.name) as professional_name,
-                CASE WHEN r.lawyer_id IS NOT NULL THEN 'Avocat' ELSE 'Huissier' END as professional_type
-                FROM {$this->table} r
+                       l.name as lawyer_name, 
+                       h.name as hussier_name 
+                FROM reservation r
                 LEFT JOIN lawyer l ON r.lawyer_id = l.id
                 LEFT JOIN hussier h ON r.hussier_id = h.id
-                WHERE r.client_id = :clientId
-                ORDER BY r.day DESC, r.horaire ASC";
-
+                WHERE r.client_id = :client_id
+                ORDER BY r.day DESC, r.horaire DESC";
+        
         $stmt = $this->conn->prepare($sql);
-        $stmt->execute([':clientId' => $clientId]);
+        $stmt->execute([':client_id' => $clientId]);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function checkAvailability(int $professionalId, string $type, string $day, string $horaire) {
-        $column = ($type === 'lawyer') ? 'lawyer_id' : 'hussier_id';
-        $sql = "SELECT COUNT(*) as count 
-                FROM {$this->table} 
-                WHERE {$column} = :id 
-                AND day = :day 
-                AND horaire = :horaire 
-                AND status != 'declined'";
-
+    public function findByProfessional($proId, $type = 'lawyer') {
+        $column = $type === 'lawyer' ? 'lawyer_id' : 'hussier_id';
+        
+        $sql = "SELECT r.*, c.name as client_name, c.phone as client_phone
+                FROM reservation r
+                JOIN client c ON r.client_id = c.id
+                WHERE r.$column = :pro_id
+                ORDER BY r.day DESC, r.horaire ASC";
+        
         $stmt = $this->conn->prepare($sql);
-        $stmt->execute([
-            ':id' => $professionalId,
-            ':day' => $day,
-            ':horaire' => $horaire
-        ]);
-        return $stmt->fetch(PDO::FETCH_ASSOC)['count'] == 0;
+        $stmt->execute([':pro_id' => $proId]);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function updateStatus($id, $status) {
+        $sql = "UPDATE reservation SET status = :status WHERE id = :id";
+        $stmt = $this->conn->prepare($sql);
+        return $stmt->execute([':status' => $status, ':id' => $id]);
     }
 }

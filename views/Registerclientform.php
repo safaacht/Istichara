@@ -2,7 +2,7 @@
 <div class="register-container">
     <h2>Créer un compte</h2>
 
-    <form action="index.php?controller=register&action=Registerclient" method="POST">
+    <form action="<?=BASE_URL?>/index.php?controller=demande&action=Registerclient" method="POST">
 
         <div class="form-row">
             <div class="form-group">

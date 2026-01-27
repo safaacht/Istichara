@@ -13,7 +13,7 @@ class PersonneController{
         $villeRepo = new VilleRepo();
         $villes = $villeRepo->affichage();
         
-        require_once __DIR__ . '/../views/Form.php';  
+        require_once __DIR__ . '/../views/Registerclientform.php';  
     }
 
     // apres la soumission
