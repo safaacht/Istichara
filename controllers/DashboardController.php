@@ -7,7 +7,7 @@ use repositories\VilleRepo;
 use repositories\StatistiquesRepo;
 
 class DashboardController {
-    public function dashboard() {
+    public function index() {
         $avocatRepo = new AvocatRepo();
         $hussierRepo = new HussierRepo();
         $villeRepo = new VilleRepo();

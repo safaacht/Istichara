@@ -8,7 +8,7 @@ use services\Mailer;
 require_once __DIR__ . '/../helper/Validator.php';
 
 class PersonneController{
-    public function createForm() {
+    public function index() {
         // recuperation des villes via  repo
         $villeRepo = new VilleRepo();
         $villes = $villeRepo->affichage();
@@ -62,13 +62,13 @@ class PersonneController{
 
                 Mailer::sendWelcomeEmail($email, $name, $role);
                 
-                header('Location: index.php?controller=dashboard&action=dashboard');
+                header('Location: index.php?controller=dashboard&action=index');
                 exit;
             } else {
                 echo "Erreur lors de l'enregistrement.";
             }
         } else {
-            header('Location: index.php?controller=personne&action=createForm');
+            header('Location: index.php?controller=personne&action=index');
             exit;
         }
     }

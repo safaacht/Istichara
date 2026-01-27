@@ -12,7 +12,7 @@ use helper\Database;
 require_once __DIR__ . '/../helper/Validator.php';
 
 class DemandeController{
-    public function createProForm() {
+    public function index() {
         // recuperation des villes via  repo
         $villeRepo = new VilleRepo();
         $villes = $villeRepo->affichage();
@@ -73,7 +73,7 @@ class DemandeController{
                 $clientcreated = $clientRepo->createHuissier($client);
                 header("location: /../views/home.php");
             }
-            header("location: index.php?controller=home&action=home");
+            header("location: index.php?controller=home&action=index");
         }
 
         
